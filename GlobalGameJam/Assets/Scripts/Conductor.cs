@@ -24,12 +24,12 @@ public class Conductor : MonoBehaviour
     public AudioSource musicSource;
 
     public static Conductor instance;
+
+    public float loopPositionInAnalog;
     void Awake()
     {
         instance = this;
     }
-   
-    
         void Start()
         {
             //Load the AudioSource attached to the Conductor GameObject
@@ -47,14 +47,8 @@ public class Conductor : MonoBehaviour
 
 
         }
-
-
-   
-
-  
     void Update()
     {
-
         //determine how many seconds since the song started
         songPosition = (float)(AudioSettings.dspTime - dspSongTime);
 
