@@ -21,7 +21,7 @@ public class Conductor : MonoBehaviour
     public float dspSongTime;
 
     //an AudioSource attached to this GameObject that will play the music.
-    public AudioSource musicSource;
+    public AudioSource song1,song2,song3;
 
     public static Conductor instance;
 
@@ -33,7 +33,7 @@ public class Conductor : MonoBehaviour
     void Start()
     {
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
+        song1 = GetComponent<AudioSource>();
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
@@ -42,7 +42,7 @@ public class Conductor : MonoBehaviour
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        musicSource.Play();
+        song1.Play();
 
 
 

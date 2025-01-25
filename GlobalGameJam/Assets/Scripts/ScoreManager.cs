@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     int multi2 = 6, multi3 = 12, multi4 = 18;
     int ScorePoint;
     int totalScore;
-    [SerializeField] TextMeshProUGUI ScoreUI;
+    [SerializeField] TextMeshProUGUI ScoreUI,ScoreMultiUI;
     private void Awake()
     {
         instance = this;
@@ -28,15 +28,19 @@ public class ScoreManager : MonoBehaviour
         if (streak >= multi4)
         {
             ScorePoint = scoreBase * 4;  // Multiplicador 4x para racha >= 18
+            ScoreMultiUI.text = "X4" ;
         } else if (streak >= multi3)
         {
             ScorePoint = scoreBase * 3;  // Multiplicador 3x para racha >= 12
+            ScoreMultiUI.text = "X3";
         } else if (streak >= multi2)
         {
             ScorePoint = scoreBase * 2;  // Multiplicador 2x para racha >= 6
+            ScoreMultiUI.text = "X2";
         } else
         {
             ScorePoint = scoreBase;  // Puntaje base si no se alcanza ningún multiplicador
+            ScoreMultiUI.text = "X1";
         }
 
         // Actualizamos el puntaje
