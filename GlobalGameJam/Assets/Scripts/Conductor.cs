@@ -30,23 +30,23 @@ public class Conductor : MonoBehaviour
     {
         instance = this;
     }
-        void Start()
-        {
-            //Load the AudioSource attached to the Conductor GameObject
-            musicSource = GetComponent<AudioSource>();
+    void Start()
+    {
+        //Load the AudioSource attached to the Conductor GameObject
+        musicSource = GetComponent<AudioSource>();
 
-            //Calculate the number of seconds in each beat
-            secPerBeat = 60f / songBpm;
+        //Calculate the number of seconds in each beat
+        secPerBeat = 60f / songBpm;
 
-            //Record the time when the music starts
-            dspSongTime = (float)AudioSettings.dspTime;
+        //Record the time when the music starts
+        dspSongTime = (float)AudioSettings.dspTime;
 
-            //Start the music
-            musicSource.Play();
+        //Start the music
+        musicSource.Play();
 
 
 
-        }
+    }
     void Update()
     {
         //determine how many seconds since the song started
