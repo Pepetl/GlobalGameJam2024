@@ -28,8 +28,8 @@ public class Conductor : MonoBehaviour
     {
         instance = this;
     }
-    void Start()
-    {
+   
+    
         void Start()
         {
             //Load the AudioSource attached to the Conductor GameObject
@@ -43,10 +43,13 @@ public class Conductor : MonoBehaviour
 
             //Start the music
             musicSource.Play();
+
+
+
         }
 
 
-    }
+   
 
   
     void Update()
