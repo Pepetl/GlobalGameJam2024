@@ -8,8 +8,8 @@ public enum GameState
     None,
     MainMenu,
     Playing,
-    RestartGame
-
+    RestartGame,
+    GameOver
 
 }
 
@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameState.RestartGame:
+
+                break;  
+            case GameState.GameOver:
 
                 break;
             default:
