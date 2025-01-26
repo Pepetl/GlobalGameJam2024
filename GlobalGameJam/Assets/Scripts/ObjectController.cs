@@ -3,7 +3,7 @@ using System;
 
 public class ObjectController : MonoBehaviour
 {
-    public float lifeTime = 5f;  // Tiempo de vida antes de desactivarse
+    public float lifeTime =2f;  // Tiempo de vida antes de desactivarse
 
     private void OnEnable()
     {

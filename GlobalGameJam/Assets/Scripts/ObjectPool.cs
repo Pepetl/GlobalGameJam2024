@@ -3,45 +3,57 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool Instance; // Instancia del pool
-    public GameObject objectToPool; // Prefab del objeto a reciclar
-    public int poolSize = 10; // Número de objetos que queremos en el pool
-    private List<GameObject> pooledObjects; // Lista que contiene los objetos del pool
+    // Instancia única de este pool
+    public static ObjectPool Instance;
+
+    // Prefabs para distintos tipos de objetos que puedes asignar
+    public List<GameObject> objectPrefabs;  // Lista para diferentes prefabs
+    private List<List<GameObject>> pooledObjects;  // Lista de listas para objetos pool
+
+    public int poolSize = 10;  // Número de objetos que queremos por prefab
 
     void Awake()
     {
-     
-            Instance = this;
-       
-    }
-
-    void Start()
-    {
-        pooledObjects = new List<GameObject>(); // Inicializamos la lista del pool
-
-        // Creamos objetos y los desactivamos
-        for (int i = 0; i < poolSize; i++)
+        if (Instance == null)
         {
-            GameObject obj = Instantiate(objectToPool); // Creamos el objeto
-            obj.SetActive(false); // Lo desactivamos de inmediato
-            pooledObjects.Add(obj); // Lo agregamos al pool
+            Instance = this;
+        } else
+        {
+            Destroy(gameObject); // Destruir si ya existe una instancia
+        }
+
+        // Inicializamos la lista de pools
+        pooledObjects = new List<List<GameObject>>();
+
+        // Creamos un pool para cada prefab
+        foreach (var prefab in objectPrefabs)
+        {
+            var pool = new List<GameObject>();
+            for (int i = 0; i < poolSize; i++)
+            {
+                GameObject obj = Instantiate(prefab);
+                obj.SetActive(false);
+                pool.Add(obj);
+            }
+            pooledObjects.Add(pool);
         }
     }
 
-    // Método para obtener un objeto del pool
-    public GameObject GetPooledObject()
+    // Método para obtener un objeto de un pool específico
+    public GameObject GetPooledObject(int index)
     {
-        // Buscamos un objeto inactivo
-        for (int i = 0; i < pooledObjects.Count; i++)
+        if (index < 0 || index >= pooledObjects.Count) return null;
+
+        var pool = pooledObjects[index];
+
+        for (int i = 0; i < pool.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!pool[i].activeInHierarchy)
             {
-                return pooledObjects[i]; // Devolvemos el objeto inactivo
+                return pool[i];
             }
         }
 
-        // Si no hay objetos inactivos, podemos optar por crear uno nuevo
-        // pero en este ejemplo, no lo haremos para mantener el pool fijo
-        return null;
+        return null;  // Si no hay objetos inactivos, devolver null
     }
 }

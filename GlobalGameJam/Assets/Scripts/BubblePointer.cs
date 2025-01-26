@@ -1,10 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BubblePointer : MonoBehaviour
 {
     public Transform firePoint; // Punto de disparo
     public float sensibilidad = 1f; // Sensibilidad para el movimiento de la posición
+
+    // Índice de la bala en el Object Pool (0 para balas)
+    public int bulletIndex = 0; 
 
     void Update()
     {
@@ -29,8 +31,8 @@ public class BubblePointer : MonoBehaviour
 
     void Shoot()
     {
-        // Obtén un objeto del pool
-        GameObject bullet = ObjectPool.Instance.GetPooledObject();
+        // Obtén una bala del pool utilizando el índice correspondiente
+        GameObject bullet = ObjectPool.Instance.GetPooledObject(bulletIndex);
 
         if (bullet != null)
         {
