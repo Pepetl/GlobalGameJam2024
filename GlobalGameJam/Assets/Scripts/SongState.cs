@@ -26,39 +26,55 @@ public class SongState : MonoBehaviour
     // Declaración de las listas de rangos para cada canción
     private List<SongRange> song1RangesList = new List<SongRange>()
     {
-        new SongRange(0f, 1f),
+        new SongRange(2f,3f),
         new SongRange(4f, 5f),
+        new SongRange(6f,7f),
         new SongRange(8f, 9f),
-        new SongRange(12f, 13f),
-        new SongRange(16f, 17f),
-        new SongRange(20f, 21f),
-        new SongRange(24f, 25f),
-        new SongRange(28f, 29f),
-        new SongRange(32f, 33f),
-        new SongRange(36f, 37f),
-        new SongRange(40f, 41f),
-        new SongRange(44f, 45f),
-        new SongRange(48f, 49f),
-        new SongRange(52f, 53f),
-        new SongRange(56f, 57f),
-        new SongRange(60f, 61f),
-        new SongRange(64f, 65f),
-        new SongRange(68f, 69f),
-        new SongRange(72f, 73f),
-        new SongRange(76f, 77f),
-        new SongRange(80f, 81f),
-        new SongRange(84f, 85f),
-        new SongRange(88f, 89f),
-        new SongRange(92f, 93f),
-        new SongRange(96f, 97f)
+        new SongRange(10f,11f),
+        new SongRange(12f,13f),
+        new SongRange(14f,15f),
+        new SongRange(16f,17f),
+        new SongRange(18f,19f),
+        new SongRange(20f,21f),
+        new SongRange(22f,23f),
+        new SongRange(24f,25f),
+        new SongRange(26f,27f),
+        new SongRange(28f,29f),
+        new SongRange(30f,31f),
+        new SongRange(32f,33f),
+        new SongRange(34f,35f),
+        new SongRange(36f,37f),
+        new SongRange(38f, 39f),
+        new SongRange(40f,42f),
+        new SongRange(42f, 43f),
+        new SongRange(44f,45f),
+        new SongRange(46f,47f),
+        new SongRange(48f,49f),
+        new SongRange(50f,51f),
+        new SongRange(52f,53f),
+        new SongRange(54f,55f),
+        new SongRange(56f,57f),
+        new SongRange(58f,59f),
+        new SongRange(60f,61f),
+        new SongRange(62f,63f),
+        new SongRange(64f,65f),
+        new SongRange(66f,67f),
+        new SongRange(68f,69f),
+
+
     };
 
     private List<SongRange> song2RangesList = new List<SongRange>()
     {
-        new SongRange(0f, 1f),
-        new SongRange(2f, 3f),
+        new SongRange(2f,3f),
+ 
         new SongRange(4f, 5f),
-        new SongRange(6f, 7f)
+
+        new SongRange(6f,7f),
+
+        new SongRange(8f, 9f),
+
+        new SongRange(10f,11f),
     };
 
     private List<SongRange> song3RangesList = new List<SongRange>()
@@ -101,7 +117,7 @@ public class SongState : MonoBehaviour
                 break;
 
             case songs.song1:
-                Conductor.instance.songBpm = 138;
+                Conductor.instance.songBpm = 90;
                 Conductor.instance.secPerBeat = 2;
                 Conductor.instance.song1.Play();
 
@@ -109,10 +125,18 @@ public class SongState : MonoBehaviour
                 break;
 
             case songs.song2:
+                Conductor.instance.songBpm = 100;
+                Conductor.instance.secPerBeat = 2;
+                Conductor.instance.song2.Play();
+
                 songPlaying = new List<SongRange>(song2RangesList);  // Asignar los rangos de la canción 2
                 break;
 
             case songs.song3:
+                Conductor.instance.songBpm = 110;
+                Conductor.instance.secPerBeat = 2;
+                Conductor.instance.song3.Play();
+
                 songPlaying = new List<SongRange>(song3RangesList);  // Asignar los rangos de la canción 3
                 break;
 

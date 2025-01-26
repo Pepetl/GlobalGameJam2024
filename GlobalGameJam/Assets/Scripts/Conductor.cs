@@ -33,7 +33,7 @@ public class Conductor : MonoBehaviour
     void Start()
     {
         //Load the AudioSource attached to the Conductor GameObject
-        song1 = GetComponent<AudioSource>();
+      
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
@@ -42,7 +42,7 @@ public class Conductor : MonoBehaviour
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        song1.Play();
+      
 
 
 
