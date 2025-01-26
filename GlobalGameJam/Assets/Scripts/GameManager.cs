@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public enum GameState
 {
     None,
-    MainMenu,
+    MainMenu1,
+    MainMenu2,
+    MainMenu3,
     Playing,
     RestartGame,
-    GameOver
+    GameOver,
+    Level1
 
 }
 
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     // Estado actual del juego
     public static GameState gameState = GameState.None;
-
+    public GameObject Menu1, Menu2, Menu3, Fondo1, Fondo2;
     private void Awake()
     {
         if (gameManager != null && gameManager != this)
@@ -45,7 +48,27 @@ public class GameManager : MonoBehaviour
             case GameState.None:
 
                 break;
-            case GameState.MainMenu:
+            case GameState.MainMenu1:
+                Menu1.SetActive(true);
+                Menu2.SetActive(false);
+                Menu3.SetActive(false);
+                Fondo1.SetActive(true);
+                Fondo2.SetActive(false);
+
+                break;
+            case GameState.MainMenu2:
+                Menu1.SetActive(false);
+                Menu2.SetActive(true);
+                Menu3.SetActive(false);
+                Fondo1.SetActive(false);
+                Fondo2.SetActive(true);
+                break;
+            case GameState.MainMenu3:
+                Menu1.SetActive(false);
+                Menu2.SetActive(false);
+                Menu3.SetActive(true);
+                Fondo1.SetActive(false);
+                Fondo2.SetActive(true);
 
                 break;
             case GameState.Playing:
@@ -53,8 +76,13 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.RestartGame:
 
-                break;  
+                break;
             case GameState.GameOver:
+
+                break;
+
+            case GameState.Level1:
+                SceneManager.LoadScene("NivelPlantilla");
 
                 break;
             default:

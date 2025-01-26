@@ -1,58 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
+
 public class Conductor : MonoBehaviour
 {
-    //Song beats per minute
-    //This is determined by the song you're trying to sync up to
-    public float songBpm;
+    public float songBpm; // Beats por minuto
+    public float secPerBeat; // Segundos por cada beat
+    public float songPosition; // Posición de la canción en segundos
+    public float songPositionInBeats; // Posición de la canción en beats (para comparación con los rangos)
+    public float dspSongTime; // Tiempo de reproducción de la canción desde el inicio (en el AudioSettings)
 
-    //The number of seconds for each song beat
-    public float secPerBeat;
-
-    //Current song position, in seconds
-    public float songPosition;
-
-    //Current song position, in beats
-    public float songPositionInBeats;
-
-    //How many seconds have passed since the song started
-    public float dspSongTime;
-
-    //an AudioSource attached to this GameObject that will play the music.
-    public AudioSource song1,song2,song3;
+    public AudioSource song1, song2, song3;
 
     public static Conductor instance;
 
-    public float loopPositionInAnalog;
     void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
-        //Load the AudioSource attached to the Conductor GameObject
-      
-
-        //Calculate the number of seconds in each beat
+        // Calcular el número de segundos por beat
         secPerBeat = 60f / songBpm;
 
-        //Record the time when the music starts
+        // Registrar el tiempo cuando la música comienza
         dspSongTime = (float)AudioSettings.dspTime;
 
-        //Start the music
-      
-
-
-
+        // Comenzar a reproducir la canción (puedes elegir una canción aquí)
+        PlayMusic(song1);
     }
+
     void Update()
     {
-        //determine how many seconds since the song started
+        // Obtener la posición actual de la canción en segundos
         songPosition = (float)(AudioSettings.dspTime - dspSongTime);
 
-        //determine how many beats since the song started
+        // Obtener la posición de la canción en beats (relación de segundos a beats)
         songPositionInBeats = songPosition / secPerBeat;
     }
+
+    // Método para reproducir una canción
+    void PlayMusic(AudioSource song)
+    {
+        song.Play();
+    }
 }
+

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class SongManager : MonoBehaviour
         public float start;   // Inicio del rango en segundos
         public float end;     // Fin del rango en segundos
         public bool processed; // Indica si este rango ya ha sido procesado
+        public List<GameObject> objectsToActivate; // Lista de objetos para activar
 
         // Constructor
         public SongRange(float start, float end)
@@ -17,8 +17,10 @@ public class SongManager : MonoBehaviour
             this.start = start;
             this.end = end;
             this.processed = false;  // Inicialmente no procesado
+            this.objectsToActivate = new List<GameObject>(); // Inicializar la lista vacía
         }
     }
+
     void Update()
     {
         // Verificar si 'Conductor' está inicializado
@@ -45,6 +47,9 @@ public class SongManager : MonoBehaviour
                         // Marcar este rango como procesado para que no se repita
                         range.processed = true;
 
+                        // Activar objetos de manera aleatoria en el rango
+                        ActivateRandomObject(range);
+
                         // Notificar que la nota fue correctamente presionada
                         notePressed = true;
                     }
@@ -62,6 +67,27 @@ public class SongManager : MonoBehaviour
         {
             // Advertir si 'Conductor' no está inicializado
             Debug.LogWarning("Conductor.instance no está inicializado.");
+        }
+    }
+
+    // Método para activar un objeto aleatorio en el rango
+    private void ActivateRandomObject(SongRange range)
+    {
+        // Verificar si hay objetos para activar en este rango
+        if (range.objectsToActivate.Count > 0)
+        {
+            // Elegir un objeto aleatorio de la lista
+            int randomIndex = Random.Range(0, range.objectsToActivate.Count);
+
+            // Obtener el objeto aleatorio
+            GameObject randomObject = range.objectsToActivate[randomIndex];
+
+            // Activar el objeto
+            if (randomObject != null)
+            {
+                randomObject.SetActive(true);
+                Debug.Log("Objeto activado aleatoriamente en el rango: " + range.start + " - " + range.end);
+            }
         }
     }
 

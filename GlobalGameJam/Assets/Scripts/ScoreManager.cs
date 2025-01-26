@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    int score = 0;
+    int score ;
     public int streak = 0;
     int scoreBase = 100;
     int multi2 = 6, multi3 = 12, multi4 = 18;
